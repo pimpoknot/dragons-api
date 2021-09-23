@@ -4,7 +4,7 @@ import api from '../services/api'
 import styles from '../styles/DragonsPage/styles.module.scss';
 import { Header } from '../components/Header'
 import Link from 'next/link'
-import { GrTrash } from 'react-icons/gr'
+import { GrTrash,GrAdd } from 'react-icons/gr'
 
 
 interface ProtoTypeProps {
@@ -15,18 +15,11 @@ interface ProtoTypeProps {
 
 export default function Dragons() {
 
-    const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
     const [session] = useSession()
+    const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
+    const [newDragons, setNewDragons] = useState('')
 
     useEffect(() => {
-        const addData = {
-            "createdAt": Date.now(),
-            "name": "Banguela",
-            "type": "Varanus",
-            "histories": [
-            ],
-            "id": Math.random(),
-          }
         api.get('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon')
             .then(res => {
                 setDragons(res.data)
@@ -36,9 +29,49 @@ export default function Dragons() {
             })
     }, [])
 
+    function deleteDragon(dragonsId: string) {
+        api.delete(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${dragonsId}`)
+        .then(response => {
+            if(response.data != null) {
+                alert('Dragon deleted succefully')
+            }
+        })
+    }
+
     
 
-    console.log(dragons)
+    
+
+    
+
+    async function addDragons(name: string, type: string) {
+
+        if(name === '') {
+            return
+        }
+       
+        useEffect(() => {
+            const addNewDragons = {
+                id: Math.random().toString(),
+                name: name,
+                type: type,
+                createdAt: Date.now().toString()
+            }
+            api.post('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon', addNewDragons)
+            .then((response) => setDragons(response.data))
+            .catch((err) =>{
+                return console.log('erro ao postar api de dragons')
+            })
+            
+        },[])
+        console.log(dragons)
+    } 
+        
+
+
+    {dragons.map(dragons => {
+        console.log(dragons.id, dragons.name)
+    })}
 
     return session ? (
         <>
@@ -54,7 +87,10 @@ export default function Dragons() {
                                     <div>
                                         <p>{dragons.name}</p>
                                     </div>
-                                    <button>Deletar <GrTrash size={20} /></button>
+                                    <div className={styles.buttonBox}>
+                                        <button onClick={() =>{addDragons('Ancalagon the Black','Tolkien Dragon')}}>TESTE</button>
+                                        <button onClick={() =>deleteDragon(dragons.id)}>Deletar <GrTrash size={20} /></button>
+                                    </div>
                                 </li>
                             )
                         })}
