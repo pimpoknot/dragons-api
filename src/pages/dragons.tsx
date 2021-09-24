@@ -4,20 +4,25 @@ import api from '../services/api'
 import styles from '../styles/DragonsPage/styles.module.scss';
 import { Header } from '../components/Header'
 import Link from 'next/link'
-import { GrTrash,GrAdd } from 'react-icons/gr'
+import { GrTrash } from 'react-icons/gr'
+import moment from 'moment'
+import router from 'next/router'
+moment.locale('pt-br'); // BRASIL
 
+moment.defineLocale('pt-br', {})
+console.log()
 
 interface ProtoTypeProps {
     createdAt: string;
+    type: string;
     name: string;
     id: string;
 }
 
-export default function Dragons() {
+export default function Dragons({ name, type }: ProtoTypeProps) {
 
     const [session] = useSession()
     const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
-    const [newDragons, setNewDragons] = useState('')
 
     useEffect(() => {
         api.get('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon')
@@ -31,73 +36,65 @@ export default function Dragons() {
 
     function deleteDragon(dragonsId: string) {
         api.delete(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${dragonsId}`)
-        .then(response => {
-            if(response.data != null) {
-                alert('Dragon deleted succefully')
-            }
-        })
+            .then(response => {
+                if (response.data != null) {
+                    
+                    router.reload()
+                }
+            })
     }
 
-    
 
-    
-
-    
-
-    async function addDragons(name: string, type: string) {
-
-        if(name === '') {
-            return
-        }
-       
-        useEffect(() => {
-            const addNewDragons = {
-                id: Math.random().toString(),
-                name: name,
-                type: type,
-                createdAt: Date.now().toString()
-            }
-            api.post('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon', addNewDragons)
-            .then((response) => setDragons(response.data))
-            .catch((err) =>{
-                return console.log('erro ao postar api de dragons')
-            })
-            
-        },[])
-        console.log(dragons)
-    } 
-        
+    const addTolkienDragon = {
+        createdAt: new Date().toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
+        name: name,
+        type: type,
+        "histories": [
+        ],
+        id: Math.floor(Math.random() * 1000).toLocaleString(),
+    }
 
 
-    {dragons.map(dragons => {
-        console.log(dragons.id, dragons.name)
-    })}
 
     return session ? (
         <>
             <Header />
             <div className={styles.dragonContainer}>
-                <h3>Lista de Dragoes</h3>
-
-                <main>
-                    <ul>
-                        {dragons.map(dragons =>{
-                            return(
-                                <li key={dragons.id} className={styles.listContent}>
-                                    <div>
-                                        <p>{dragons.name}</p>
-                                    </div>
-                                    <div className={styles.buttonBox}>
-                                        <button onClick={() =>{addDragons('Ancalagon the Black','Tolkien Dragon')}}>TESTE</button>
-                                        <button onClick={() =>deleteDragon(dragons.id)}>Deletar <GrTrash size={20} /></button>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </main>
-
+                <div className={styles.headerTitle}>
+                    <h3>Lista de Dragões</h3>
+                    <button><Link href="/createDragon">Criar Dragão</Link></button>
+                </div>
+                <table className={styles.tableContent}>
+                    <thead>
+                        <tr>
+                            <th>Nome do Dragão</th>
+                            <th>Tipo</th>
+                            <th>Data de Criação</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {dragons.map(dragons => {
+                        return (
+                            <tbody key={dragons.id}>
+                                <tr>
+                                    <Link href={`/DragonProfile/${dragons.id}`}><td>{dragons.name}</td></Link>
+                                    <td>{dragons.type}</td>
+                                    <td>{moment(dragons.createdAt).format('DD/MM/YYYY')}</td>
+                                    <td>
+                                        <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
+                                        <button onClick={() =>deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
+                </table>
+                {/* <div className={styles.buttonBox}>
+                    
+                    
+                </div> */}
             </div>
+            
         </>
     ) : (
         <div className={styles.deniedAccess}>
@@ -107,5 +104,7 @@ export default function Dragons() {
             </Link>
         </div>
     )
+
+
 
 }
