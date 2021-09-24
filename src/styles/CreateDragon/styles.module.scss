@@ -54,7 +54,7 @@
                 margin-top: 1rem;
                 
                 input[type="submit"] {
-                    width: 45%;
+                    width: 50%;
                     transition: filter 0.2 ease-in;
                     cursor: pointer;
                     color: white;
@@ -66,7 +66,7 @@
                 }
                 button {
                     font-size: 1.2rem;
-                    width: 45%;
+                    width: 50%;
                     background: #f3cf4e;
                     border: none;
                     color: black;
@@ -74,6 +74,7 @@
                     cursor: pointer;
                     box-shadow: 0 0 9px 0px rgb(0 0 0 / 4%);
                     transition: filter 0.2s ease-in-out;
+                    margin-right: 1rem;
                     a{
                         text-decoration: none;
                     }

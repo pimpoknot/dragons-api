@@ -1,18 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## Tecnologias usadas
+[ReactJS](https://pt-br.reactjs.org/) / 
+[NextJS](https://nextjs.org/)<br>
+[Typescript](https://www.typescriptlang.org/) - Com objetivo de tipar nossos objetos para que torne a manutenção mais simples no futuro.<br>
+[Next Router](https://nextjs.org/docs/api-reference/next/router#userouter) - Como nossa aplicação tem muitas funcionalidade de navegação, decidir usar o next/router por conta de sua flexbilidade e usabilidade simples. <br>
+[Next Auth](https://next-auth.js.org/) - Para uma funcionalidade prática de autenticação, o NextAuth nos fornece uma documentação bem estruturada
+
+## Páginas de Componentes
+
+- Header: esse componente fica responsável pelas funcionaliades do Header que contem o botão de Logout.
+- SignInModal: Esse Componente fica responsável pela tela inicial, dentro dele existe toda a lógica para fazer Login
+- DragonsModal: Aqui fica o modal quando acessado os detalhes de cada dragão
+
+## Como instalar e rodar o projeto
+
+Para instalar o projeto basta digitar:
+```bash
+npm install
+# ou
+yarn
+```
+Para rodar o projeto basta digitar: 
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador apóis iniciar o projeto.
+
+## Bibliotecas
+
+- [React-icon]()
+- [React-hook-form]()
+- [moment]()
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 

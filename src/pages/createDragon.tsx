@@ -2,11 +2,11 @@ import { useSession } from "next-auth/client";
 import { Header } from "../components/Header";
 import styles from '../styles/CreateDragon/styles.module.scss';
 import Link from 'next/link'
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios'
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 
 interface IFormInputs {
     name: string;
@@ -19,6 +19,7 @@ const validatePost = yup.object().shape({
     name: yup.string().required("Nome do dragao e obrigatorio"),
     type: yup.string().required("O tipo do dragao e obrigatorio")
 })
+
 export default function CreateDragon() {
     const [session] = useSession();
 
@@ -27,8 +28,8 @@ export default function CreateDragon() {
     })
 
 
-    const addDragon = function (data: IFormInputs)  {
-        axios.post('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon', data)
+    const addDragon = async function (data: IFormInputs)  {
+        await axios.post('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon', data)
         .then(()=> {
             router.push("/dragons")
         })

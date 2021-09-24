@@ -1,15 +1,14 @@
-import { InputHTMLAttributes, useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from '../../styles/EditDragon/styles.module.scss';
 import React from 'react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { Header } from '../../components/Header';
 import axios from 'axios'
 import router, { useRouter } from 'next/router'
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Header } from '../../components/Header';
-
 
 interface IFormInputs {
     name: string;
@@ -33,8 +32,8 @@ export default function EditDragon() {
         })
     
     
-        const addDragon = function (data: IFormInputs)  {
-            axios.put(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${id}`, data)
+        const addDragon = async function (data: IFormInputs)  {
+            await axios.put(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${id}`, data)
             .then(()=> {
                 router.push("/dragons")
             })
