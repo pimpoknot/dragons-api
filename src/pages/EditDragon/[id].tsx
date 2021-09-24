@@ -72,7 +72,9 @@ export default function EditDragon() {
                     </div>
                 </>
             ) : (
-                <h2>Acesso Negado!!</h2>
+                <div> 
+                    <h1>ACESSO NEGADO!!! RETORNE PARA HOME</h1>
+                </div>
            )}
         </>
     )

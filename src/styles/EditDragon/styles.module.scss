@@ -30,10 +30,25 @@
                 button {
                     width: 45%;
                     padding: 1rem;
+                    background: transparent;
+                    border-radius: 5px;
+                    background: transparent;
+                    border:none;
+                    border: 1px solid #333;
+                    cursor: pointer;
+                    transition: filter 0.3s ease-in;
+                    &:hover {
+                        filter: brightness(0.8);
+                    }
                 }
 
                 button + button {
                     margin-left: 0.75rem;
+                    background-color: #288d50;
+                    border: none;
+                    color: white;
+                    
+                    
                 }
             }
         }

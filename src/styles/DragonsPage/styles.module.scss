@@ -84,7 +84,9 @@
     }
 
     td {
-        cursor: pointer;
+        &:nth-child(1) {
+            cursor: pointer;
+        }
     }
     thead {
         tr {
@@ -101,8 +103,19 @@
     tbody{
         tr {
             border-bottom: 1px solid #dddddd;
+            transition: filter 0.3s ease-in;
+            
             
         }
+
+        td {
+            transition: filter 0.3s ease-in;
+            &:hover:nth-child(1){
+                text-decoration: underline;
+                filter: brightness(0.9);
+            }
+        }
+        
 
         &:nth-of-type(even) {
             background-color: #f3f3f3;
