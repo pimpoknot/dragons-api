@@ -1,12 +1,24 @@
-import { signOut } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 import styles from './styles.module.scss'
 import { GrLogout } from 'react-icons/gr'
 import Link from 'next/link'
+
+
+
 export function Header() {
+    const [session] = useSession()
+
     return (
         <div className={styles.header}>
              <div className={styles.headerContent}>
                     <div className={styles.headerContentContainer}>
+                        <div className={styles.userLog}>
+                            <div className={styles.imageLog}>
+                                <img src={session?.user?.image} alt="Sem imagem" />
+                            </div>
+                            <p>{session?.user?.email} <span>{session?.user?.name}</span></p>
+                            
+                        </div>
                         <Link href="/">
                             <button onClick={()=>signOut()}>
                                 <GrLogout size={25} color="#04d361"/>

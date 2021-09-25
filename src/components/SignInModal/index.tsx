@@ -3,7 +3,6 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Header } from '../Header'
 import Link from 'next/link'
-import Dragons from '../../pages/dragons';
 
 
 export function SignInModal() {

@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import axios from 'axios'
-import router from 'next/router'
+import { addDragon } from '../services/api';
+import DeniedAccess from "../components/DeniedAccess";
+
 
 interface IFormInputs {
     name: string;
@@ -23,23 +24,14 @@ const validatePost = yup.object().shape({
 })
 
 export default function CreateDragon() {
+
     const [session] = useSession();
 
     const { register, handleSubmit, formState } = useForm<IFormInputs>({
         resolver: yupResolver(validatePost)
     })
 
-
-    const addDragon = async function (data: IFormInputs)  {
-        await axios.post('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon', data)
-        .then(()=> {
-            router.push("/dragons")
-        })
-        console.log(data)
-    }
-
     const { errors } = formState
-
 
     return(
         session ? (
@@ -63,7 +55,7 @@ export default function CreateDragon() {
                 </div>
            </>
         ): (
-            <h1>Deslogado</h1>
+           <DeniedAccess />
         )
     )
 }
