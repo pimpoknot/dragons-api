@@ -14,6 +14,7 @@ interface IFormInputs {
     name: string;
     type: string;
     createdAt: string;
+    avatar: string;
   }
 export default function EditDragon() {
 
@@ -62,6 +63,7 @@ export default function EditDragon() {
                                 <p>{errors.name?.message}</p>
                                 <input type="text" {...register('type')} placeholder="Digite um novo tipo" />
                                 <p>{errors.type?.message}</p>
+                                <input type="text"  placeholder="Http://urldaimagedodragao.com.br" {...register('avatar')}/>
                                 <div className={styles.ButtonSubmit}>
                                     <Link href="/dragons"><button>Voltar</button></Link>
                                     <button>Editar</button>

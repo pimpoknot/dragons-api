@@ -2,7 +2,7 @@
     background: white;
     padding: 1rem;
     width: 100%;
-
+    position: relative;
     .headerTitle {
         button {
             background: #288d50;
@@ -26,10 +26,124 @@
         font-size: 2rem;
     }
 
-   
-    
-       
-   
+    .listMode{
+        width: 140px;
+        margin: 0 auto;
+        bottom: -15px;
+
+        button {
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+    }
+}
+
+
+.container {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    .card{
+        display: grid;
+        grid-template-columns: 300px;
+        grid-template-rows: 210px 210px 80px;
+        grid-template-areas: "image"
+        "text" 
+        "status";
+        font-family: 'Roboto', sans-serif;
+        border-radius: 18px;
+        background: white;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+        text-align: center;
+        transition: 0.5s ease;
+        cursor: pointer;
+        margin-left: 2rem;
+        margin-top: 2rem;
+        &:hover {
+            transform: scale(1.2);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+        }
+    }
+
+    .cardImage {
+        grid-area: image;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            height: 210px;
+        }
+
+    }
+
+    .cardText {
+        grid-area: text;
+        margin: 25px;
+
+        span {
+            color: rgb(255,7,110);
+            font-size: 13px;
+            cursor: text;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 28px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        p {
+            cursor: text;
+            color: grey;
+            font-size: 15px;
+            font-weight: 300;
+        }
+    }
+
+    .cardStatus {
+        grid-area: status;
+        display: grid;
+        grid-template-areas: '1fr' '1fr' '1fr';
+        grid-template-rows: 1fr;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background: rgb(255,7,110);
+
+        .stats{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            color: white;
+
+           button {
+               border-radius: 5px;
+               border: none;
+               cursor: pointer;
+               padding: 1rem;
+               transition: filter 0.3s ease;
+               &:hover {
+                   filter:brightness(0.8) ;
+               }
+           }
+           button + button {
+               margin-left: 1rem;
+               background: #f3cf4e;
+               color: black;
+           }
+        }
+    }
 }
 
 .tableContent {
@@ -86,6 +200,19 @@
     td {
         &:nth-child(1) {
             cursor: pointer;
+        }
+
+        .dragonDetail {
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 50px;
+                height: 51px;
+                border-radius: 50%;
+                max-width: 100%;
+                margin-right: 0.5rem;
+            }
         }
     }
     thead {

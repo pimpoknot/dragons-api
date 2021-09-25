@@ -1,14 +1,92 @@
+
 .container {
     max-width: 1200px;
-    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     margin: 0 auto;
-    height: 750px;
+.card{
+    display: grid;
+    grid-template-columns: 900px;
+    grid-template-rows: 300px 200px 100px;
+    grid-template-areas: "image"
+    "text" 
+    "status";
+    font-family: 'Roboto', sans-serif;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    text-align: center;
+    transition: 0.5s ease;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    
+}
 
-    .dragonProfileContainer {
-        border: 1px solid #333;
-        
-        .card {
+.cardImage {
+    grid-area: image;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: hidden;
 
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: 210px;
+    }
+
+}
+
+.cardText {
+    grid-area: text;
+    margin: 25px;
+
+    span {
+        color: rgb(255,7,110);
+        font-size: 1rem;
+        cursor: text;
+    }
+
+    h2 {
+        margin-top: 1rem;
+        font-size: 28px;
+    }
+
+    p {
+        cursor: text;
+        color: grey;
+        font-size: 1rem;
+        font-weight: 300;
+    }
+}
+
+.cardStatus {
+    grid-area: status;
+    display: grid;
+    grid-template-areas: '1fr' '1fr' '1fr';
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgb(255,7,110);
+
+    button {
+        width: 50%;
+        margin: auto;
+        padding: 1rem;
+        height: 66px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background: #f3cf4e;
+        color: black;
+        transition: filter 0.3s ease;
+
+        &:hover {
+            filter: brightness(0.9);
         }
     }
+
+}
+
 }

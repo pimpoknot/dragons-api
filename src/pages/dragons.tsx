@@ -17,12 +17,16 @@ interface ProtoTypeProps {
     type: string;
     name: string;
     id: string;
+    avatar: string;
 }
+
+
 
 export default function Dragons({ name, type }: ProtoTypeProps) {
 
     const [session] = useSession()
     const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
+    const [ListView, setListView] = useState(true)
 
     useEffect(() => {
         api.get('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon')
@@ -38,7 +42,7 @@ export default function Dragons({ name, type }: ProtoTypeProps) {
         api.delete(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${dragonsId}`)
             .then(response => {
                 if (response.data != null) {
-                    
+
                     router.reload()
                 }
             })
@@ -54,15 +58,30 @@ export default function Dragons({ name, type }: ProtoTypeProps) {
         id: Math.floor(Math.random() * 1000).toLocaleString(),
     }
 
+    const dataSorted = dragons.sort((a, b) => a.name.localeCompare(b.name)).map(dragons => {
+        return dragons.name
+    })
 
+    console.log(dataSorted)
 
+    let viewrMode = ListView
+
+    
+
+    
+    
+
+    // Banguela: https://1.bp.blogspot.com/-x5Hw_V3BAnk/Vrlfp6ceapI/AAAAAAAAGAQ/lUvsVgMRIBM/s1600/banguela%2B1.jpg
     return session ? (
-        <>
-            <Header />
-            <div className={styles.dragonContainer}>
-                <div className={styles.headerTitle}>
-                    <h3>Lista de Dragões</h3>
-                    <button><Link href="/createDragon">Criar Dragão</Link></button>
+        ListView ? (
+            <>
+                <Header />
+                <div className={styles.dragonContainer}>
+                    <div className={styles.headerTitle}>
+                        <h3>Lista de Dragões</h3>
+                        <button><Link href="/createDragon">Criar Dragão</Link></button>
+                    </div>
+                    <div className={styles.listMode}><button onClick={() => viewrMode ? setListView(false): setListView(true)}>{ListView ? 'Ver como Card' : 'Ver como Lista'}</button></div>
                 </div>
                 <table className={styles.tableContent}>
                     <thead>
@@ -77,25 +96,62 @@ export default function Dragons({ name, type }: ProtoTypeProps) {
                         return (
                             <tbody key={dragons.id}>
                                 <tr>
-                                    <Link href={`/DragonProfile/${dragons.id}`}><td>{dragons.name}</td></Link>
+                                    <Link href={`/DragonProfile/${dragons.id}`}>
+                                        <td>
+                                            <div className={styles.dragonDetail}>
+                                                <img src={dragons.avatar} alt="smaug" />
+                                                {dragons.name}
+                                            </div>
+                                        </td>
+                                    </Link>
                                     <td>{dragons.type}</td>
                                     <td>{moment(dragons.createdAt).format('DD/MM/YYYY')}</td>
                                     <td>
                                         <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
-                                        <button onClick={() =>deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
+                                        <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
                                     </td>
                                 </tr>
                             </tbody>
                         )
                     })}
                 </table>
-                {/* <div className={styles.buttonBox}>
-                    
-                    
-                </div> */}
-            </div>
-            
-        </>
+            </>
+        ) : (
+            <>
+                <Header />
+                <div className={styles.dragonContainer}>
+                    <div className={styles.headerTitle}>
+                        <h3>Lista de Dragões</h3>
+                        <button><Link href="/createDragon">Criar Dragão</Link></button>
+                    </div>
+                    <div className={styles.listMode}><button onClick={() => viewrMode ? setListView(false): setListView(true)}>{ListView ? 'Ver como Card' : 'Ver como Lista'}</button></div>
+                </div>
+
+                <div className={styles.container}>
+                    {dragons.map(dragons => {
+                        return (
+                            <div className={styles.card} key={dragons.id}>
+                                <div className={styles.cardImage}>
+                                    <img src={dragons.avatar} alt="imagem de dragao" />
+                                </div>
+                                <div className={styles.cardText}>
+                                    <span>Data de criação: {moment(dragons.createdAt).format('DD/MM/YYYY')} </span>
+                                    <Link href={`/DragonProfile/${dragons.id}`}><h2>{dragons.name}</h2></Link>
+                                    <p>Tipo do Dragao: {dragons.type}</p>
+                                </div>
+                                <div className={styles.cardStatus}>
+                                    <div className={styles.stats}>
+                                        <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
+                                        <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+
+            </>
+        )
     ) : (
         <div className={styles.deniedAccess}>
             <p>Acesso Negado! Por favor, faca login</p>

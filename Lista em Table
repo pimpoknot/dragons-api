@@ -1,0 +1,32 @@
+<!-- <table className={styles.tableContent}>
+                    <thead>
+                        <tr>
+                            <th>Nome do Dragão</th>
+                            <th>Tipo</th>
+                            <th>Data de Criação</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {dragons.map(dragons => {
+                        return (
+                            <tbody key={dragons.id}>
+                                <tr>
+                                    <Link href={`/DragonProfile/${dragons.id}`}>
+                                        <td>
+                                            <div className={styles.dragonDetail}>
+                                                <img src={urlDraong.avatar} alt="smaug" />
+                                                {dragons.name}
+                                            </div>
+                                        </td>
+                                    </Link>
+                                    <td>{dragons.type}</td>
+                                    <td>{moment(dragons.createdAt).format('DD/MM/YYYY')}</td>
+                                    <td>
+                                        <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
+                                        <button onClick={() =>deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
+                </table> -->
