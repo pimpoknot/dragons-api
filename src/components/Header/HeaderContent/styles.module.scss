@@ -1,15 +1,19 @@
 .dragonContainer {
-    background: white;
+    background: grey;
     padding: 1rem;
-    width: 100%;
+    display: flex;
+    align-items: center;
     position: relative;
+    border-radius: 0px 0 25px 25px;
+    justify-content: center;
     .headerTitle {
         button {
             background: #288d50;
             border-radius: 5px;
             border: none;
-            padding: 1rem;
             transition: 0.2s ease-in;
+            margin-right: 1rem;
+            padding: 1rem;
             a{
                 color: white;
                 text-decoration: none;
@@ -24,6 +28,7 @@
 
     h3 {
         font-size: 2rem;
+        color: white;
     }
 
   

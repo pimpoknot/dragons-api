@@ -6,6 +6,8 @@ import moment from 'moment'
 import Link from 'next/link'
 import { GrTrash } from 'react-icons/gr'
 import { deleteDragon } from '../../services/api'
+import { useBreakpointValue } from "@chakra-ui/media-query"
+
 
 interface ProtoTypeProps {
     createdAt: string;
@@ -16,9 +18,17 @@ interface ProtoTypeProps {
 }
 
 
+
+
 export default function DragonsTable() {
 
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        lg: true
+    })
+
     const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
+    
 
     useEffect(() => {
         api.get('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon')
@@ -31,11 +41,14 @@ export default function DragonsTable() {
     }, [])
 
 
+
     const dataSorted = dragons.sort((a, b) => a.name.localeCompare(b.name)).map(dragons => {
         return dragons.name
     })
 
     console.log(dataSorted)
+
+
 
     return (
         <>
@@ -63,7 +76,9 @@ export default function DragonsTable() {
                                 <td>{dragons.type}</td>
                                 <td>{moment(dragons.createdAt).format('DD/MM/YYYY')}</td>
                                 <td>
-                                    <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
+                                    <Link href={`/EditDragon/${dragons.id}`}>
+                                        <button></button>
+                                    </Link>
                                     <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
                                 </td>
                             </tr>

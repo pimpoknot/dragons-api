@@ -27,8 +27,8 @@ export default function DragonsCards() {
                 console.log('Erro ao acessar api!')
             })
     }, [])
- 
-    const dataSorted = dragons.sort((a, b) => a.name.localeCompare(b.name)).map(dragons => {
+
+    dragons.sort((a, b) => a.name.localeCompare(b.name)).map(dragons => {
         return dragons.name
     })
 
@@ -37,26 +37,26 @@ export default function DragonsCards() {
 
     return (
         <div className={styles.container}>
-                    {dragons.map(dragons => {
-                        return (
-                            <div className={styles.card} key={dragons.id}>
-                                <div className={styles.cardImage}>
-                                    <img src={dragons.avatar} alt="imagem de dragao" />
-                                </div>
-                                <div className={styles.cardText}>
-                                    <span>Data de criação: {moment(dragons.createdAt).format('DD/MM/YYYY')} </span>
-                                    <Link href={`/DragonProfile/${dragons.id}`}><h2>{dragons.name}</h2></Link>
-                                    <p>Tipo do Dragao: {dragons.type}</p>
-                                </div>
-                                <div className={styles.cardStatus}>
-                                    <div className={styles.stats}>
-                                        <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
-                                        <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
-                                    </div>
-                                </div>
+            {dragons.map(dragons => {
+                return (
+                    <div className={styles.card} key={dragons.id}>
+                        <div className={styles.cardImage}>
+                            <img src={dragons.avatar} alt="imagem de dragao" />
+                        </div>
+                        <div className={styles.cardText}>
+                            <span>Data de criação: {moment(dragons.createdAt).format('DD/MM/YYYY')} </span>
+                            <Link href={`/DragonProfile/${dragons.id}`}><h2>{dragons.name}</h2></Link>
+                            <p>Tipo do Dragao: {dragons.type}</p>
+                        </div>
+                        <div className={styles.cardStatus}>
+                            <div className={styles.stats}>
+                                <Link href={`/EditDragon/${dragons.id}`}><button>Editar</button></Link>
+                                <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
                             </div>
-                        )
-                    })}
-                </div>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
     )
 }

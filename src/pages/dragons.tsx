@@ -5,7 +5,7 @@ import { Header } from '../components/Header'
 import DragonsCards from "../components/DragonsCards";
 import DragonsTable from "../components/DragonsTable";
 import HeaderContent from "../components/Header/HeaderContent";
-import HeaderTitle from "../components/Header/HeaderContent/HeaderTitle";
+import CreateDragonButton from '../components/Buttons/CreateDragonButton'
 import DeniedAccess from "../components/DeniedAccess";
 
 export default function Dragons() {
@@ -17,9 +17,9 @@ export default function Dragons() {
     return session ? (
         ListView ? (
             <>
-                <Header />
+                <Header title="Lista de Dragoes" />
                 <HeaderContent>
-                    <HeaderTitle />
+                    <CreateDragonButton name="Criar Dragao"/>
                     <div className={styles.listMode}>
                         <button onClick={() => viewrMode ? setListView(false) : setListView(true)}>
                             {ListView ? 'Ver como Card' : 'Ver como Lista'}
@@ -30,9 +30,9 @@ export default function Dragons() {
             </>
         ) : (
             <>
-                <Header />
+                <Header title="Lista de Dragoes" />
                 <HeaderContent>
-                    <HeaderTitle />
+                    <CreateDragonButton name="Criar Dragao"/>
                     <div className={styles.listMode}>
                         <button onClick={() => viewrMode ? setListView(false): setListView(true)}>
                             {ListView ? 'Ver como Card' : 'Ver como Lista'}
