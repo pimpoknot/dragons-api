@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import Link from 'next/link'
 import axios from 'axios';
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 
@@ -14,7 +14,7 @@ interface IFormInputs {
     avatar: string;
 }
 
-export default function Form(props) {
+export default function Form(props: IFormInputs)  {
 
     const router = useRouter()
     const { id } = router.query
@@ -50,9 +50,9 @@ export default function Form(props) {
             <div className={styles.ModalContainer}>
                 <h2>Edite seu dragao</h2>
                 <form onSubmit={handleSubmit(addDragon)}>
-                    <input type="text" {...register('name')} placeholder={props.value} />
+                    <input type="text" {...register('name')} />
                     <p>{errors.name?.message}</p>
-                    <input type="text" {...register('type')} placeholder={props.value} />
+                    <input type="text" {...register('type')} />
                     <p>{errors.type?.message}</p>
                     <input type="text" placeholder="Http://urldaimagedodragao.com.br" {...register('avatar')} />
                     <div className={styles.ButtonSubmit}>
@@ -62,7 +62,5 @@ export default function Form(props) {
                 </form>
             </div>
         </div>
-
-
     )
 }

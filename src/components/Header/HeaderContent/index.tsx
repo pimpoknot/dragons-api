@@ -2,7 +2,6 @@ import styles from './styles.module.scss';
 import Link from 'next/link'
 import { PropsWithChildren, ReactChild, useState } from 'react';
 import { useSession } from 'next-auth/client';
-import  HeaderTitle  from './HeaderTitle/index'
 
 
 export default function HeaderContent(props) {

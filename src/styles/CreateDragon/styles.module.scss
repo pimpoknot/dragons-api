@@ -18,6 +18,8 @@
             display: flex;
             flex-direction: column;
            margin: 0 auto;
+
+         
             input {
                 padding: 1rem;
                 border-radius: 5px;
@@ -87,6 +89,12 @@
         }
     }
 
+}
+
+.textMsg{
+    width: 95%;
+    margin: 1rem auto;
+    color: black;
 }
 
 .erroMsg {

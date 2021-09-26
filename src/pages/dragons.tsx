@@ -14,9 +14,11 @@ export default function Dragons() {
     const [ListView, setListView] = useState(true)
 
     let viewrMode = ListView
+
+   
     return session ? (
         ListView ? (
-            <>
+            <div className={styles.container}>
                 <Header title="Lista de Dragoes" />
                 <HeaderContent>
                     <CreateDragonButton name="Criar Dragao"/>
@@ -27,7 +29,7 @@ export default function Dragons() {
                     </div>
                 </HeaderContent>
                 <DragonsTable />
-            </>
+            </div>
         ) : (
             <>
                 <Header title="Lista de Dragoes" />

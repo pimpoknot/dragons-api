@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './styles.module.scss';
 import moment from 'moment'
 import Link from 'next/link'
+import { DRAGON_GENERIC_IMAGE, API_URL } from '../../services/variables'
 
 interface ProfileDragonProps {
     name: string;
@@ -22,22 +23,33 @@ export default function DragonProfile() {
 
 
     async function fetchData() {    
-        let response = await axios.get(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${id}`)
-        let user = await response.data
-        setProfileDragon(user)
-        console.log('teste: ', profileDragon)
-
+        
+        await axios.get(API_URL+id)
+        .then((response) => {
+            let user = response.data
+            setProfileDragon(user)
+            console.log('Dragon Data -->', profileDragon)
+            console.log(id)
+        }).catch((err) =>{
+            window.alert('Erro ao acessar dados da API, voce sera redireciado para home')
+            router.push("/dragons")
+        })
+        // let response = await axios.get(`${API_URL+id}`)
+        // let user = await response.data
+        // setProfileDragon(user)
+        // console.log('teste: ', profileDragon)
     }
     
     useEffect(() =>{
-        fetchData()   
+        fetchData()
+        console.log(profileDragon)
     },[])
 
     return (
         <div className={styles.container}>
             <div className={styles.card} key={profileDragon?.id}>
                 <div className={styles.cardImage}>
-                    <img src={profileDragon?.avatar} alt="imagem de dragao" />
+                    {profileDragon?.avatar === '' ? <img src={DRAGON_GENERIC_IMAGE}/> : <img src={profileDragon?.avatar} alt="dragon" />}
                 </div>
                 <div className={styles.cardText}>
                     <span>Data de criação: {moment(profileDragon?.createdAt).format('DD/MM/YYYY')} </span>

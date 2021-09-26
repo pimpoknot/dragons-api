@@ -28,30 +28,33 @@
                     margin-left: 0.75rem;
                     color: white;
                     position: relative;
-
-                    &::before{
-                        content: "Logado";
-                        width: 30%;
-                        border-radius: 8px 25px 26px 18px;
-                        position: absolute;
-                        left: -85px;
-                        background: green;
-                        padding: 0.2rem;
-                        bottom: -22px;
-                      
-                    }
-
                     span{
 
                     }
                 }
                 .imageLog{
                     width: 60px;
+                    position: relative;
+
+                    &::before{
+                        content: "Logado";
+                        width: 100%;
+                        border-radius: 8px 25px 26px 18px;
+                        position: absolute;
+                        background: green;
+                        padding: 0.2rem;
+                        bottom: -10px;
+                        z-index: 3;
+                        color: white;
+                        text-align: center;
+                      
+                    }
                    
                     img {
                         border-radius: 50%;
                         width: 100%;
                         border: solid 2px green;
+                        position: relative;
                     }
                 }
             }

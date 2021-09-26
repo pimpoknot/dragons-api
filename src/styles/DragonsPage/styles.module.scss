@@ -1,8 +1,14 @@
-  .listMode{
-    button {
-    padding: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    }
+.container {
+  margin: 0;
+  width: 100%;
+  display: table;
+}
+
+.listMode{
+  button {
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 }

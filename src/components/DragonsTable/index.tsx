@@ -1,12 +1,14 @@
-import { useSession } from "next-auth/client"
 import { useEffect, useState } from "react"
 import api from '../../services/api'
 import styles from './styles.module.scss'
 import moment from 'moment'
 import Link from 'next/link'
 import { GrTrash } from 'react-icons/gr'
+import { FiEdit } from 'react-icons/fi'
 import { deleteDragon } from '../../services/api'
 import { useBreakpointValue } from "@chakra-ui/media-query"
+import { GiDoubleDragon } from 'react-icons/gi'
+
 
 
 interface ProtoTypeProps {
@@ -28,7 +30,7 @@ export default function DragonsTable() {
     })
 
     const [dragons, setDragons] = useState<ProtoTypeProps[]>([])
-    
+
 
     useEffect(() => {
         api.get('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon')
@@ -46,12 +48,8 @@ export default function DragonsTable() {
         return dragons.name
     })
 
-    console.log(dataSorted)
-
-
-
     return (
-        <>
+        <div className={styles.container}>
             <table className={styles.tableContent}>
                 <thead>
                     <tr>
@@ -62,13 +60,22 @@ export default function DragonsTable() {
                     </tr>
                 </thead>
                 {dragons.map(dragons => {
+
+                   const checkAvatar = () => {
+                    if(dragons.avatar) {
+                        if(dragons.avatar === '') {
+                            return false
+                        }
+                    }
+                   }
+
                     return (
                         <tbody key={dragons.id}>
                             <tr>
                                 <Link href={`/DragonProfile/${dragons.id}`}>
                                     <td>
                                         <div className={styles.dragonDetail}>
-                                            <img src={dragons.avatar} alt="smaug" />
+                                            {dragons.avatar ? <img src={dragons.avatar} alt="dragon" />  : <GiDoubleDragon size={50} />}
                                             {dragons.name}
                                         </div>
                                     </td>
@@ -77,15 +84,15 @@ export default function DragonsTable() {
                                 <td>{moment(dragons.createdAt).format('DD/MM/YYYY')}</td>
                                 <td>
                                     <Link href={`/EditDragon/${dragons.id}`}>
-                                        <button></button>
+                                        <button>{isWideVersion ? 'Editar' : <FiEdit size={20} />}</button>
                                     </Link>
-                                    <button onClick={() => deleteDragon(dragons.id)}>Deletar <GrTrash size={15} /></button>
+                                    <button onClick={() => deleteDragon(dragons.id)}>{isWideVersion ? 'Deletar' : <GrTrash size={20} />}</button>
                                 </td>
                             </tr>
                         </tbody>
                     )
                 })}
             </table>
-        </>
+        </div>
     )
 }

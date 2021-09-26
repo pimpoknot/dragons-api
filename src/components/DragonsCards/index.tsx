@@ -1,12 +1,12 @@
-import { useSession } from "next-auth/client"
 import { useEffect, useState } from "react"
 import api from '../../services/api'
 import styles from './styles.module.scss'
 import moment from 'moment'
 import Link from 'next/link'
-import router from 'next/router'
 import { GrTrash } from 'react-icons/gr'
 import { deleteDragon } from '../../services/api'
+import { DRAGON_GENERIC_IMAGE } from '../../services/variables'
+
 
 interface ProtoTypeProps {
     createdAt: string;
@@ -41,7 +41,7 @@ export default function DragonsCards() {
                 return (
                     <div className={styles.card} key={dragons.id}>
                         <div className={styles.cardImage}>
-                            <img src={dragons.avatar} alt="imagem de dragao" />
+                            {dragons.avatar === '' && dragons.avatar === undefined ? <img src={DRAGON_GENERIC_IMAGE}/> : <img src={dragons.avatar} alt="dragon" />}         
                         </div>
                         <div className={styles.cardText}>
                             <span>Data de criação: {moment(dragons.createdAt).format('DD/MM/YYYY')} </span>
