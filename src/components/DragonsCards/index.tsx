@@ -41,7 +41,7 @@ export default function DragonsCards() {
                 return (
                     <div className={styles.card} key={dragons.id}>
                         <div className={styles.cardImage}>
-                            {dragons.avatar === '' && dragons.avatar === undefined ? <img src={DRAGON_GENERIC_IMAGE}/> : <img src={dragons.avatar} alt="dragon" />}         
+                            {dragons.avatar === '' ? <img src={DRAGON_GENERIC_IMAGE}/> : <img src={dragons.avatar} alt="dragon" />}         
                         </div>
                         <div className={styles.cardText}>
                             <span>Data de criação: {moment(dragons.createdAt).format('DD/MM/YYYY')} </span>
