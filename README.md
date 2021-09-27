@@ -13,6 +13,7 @@
   </tr>
 </table>
 
+
 ---
 
 ## Tecnologias usadas
@@ -25,16 +26,21 @@
 
 ---
 
-## Páginas de Componentes
+## 📁 Estrutura das páginas de Componentes
 
+#### Header
+- Esse componente fica responsável pelas funcionaliades do Header que contem o botão de Logout.
+#### SignInModal:
+- Esse Componente fica responsável pela tela inicial, dentro dele existe toda a lógica para fazer Login
+#### DragonsModal: 
+- Aqui fica o modal quando acessado os detalhes de cada dragão
+#### Buttons:
+- Alguns botões principais estão nesse componente
+#### DeniedAccess:
+- Componente que checa de usuario ta logado ou não, podendo liberar a lista de dragões
+#### ErrorModal: 
+- Visual do Modal para tratativa caso ocorra algum erro de requisição da API.
 
-- Header: esse componente fica responsável pelas funcionaliades do Header que contem o botão de Logout.
-- SignInModal: Esse Componente fica responsável pela tela inicial, dentro dele existe toda a lógica para fazer Login
-- DragonsModal: Aqui fica o modal quando acessado os detalhes de cada dragão
-- Buttons: Alguns botões principais estão nesse componente
-- DeniedAccess: Componente que checa de usuario ta logado ou não, podendo liberar a lista de dragões
-- ErrorModal: Visual do Modal para tratativa caso ocorra algum erro de requisição da API.
--
 ---
 ## Como instalar e rodar o projeto
 
@@ -57,7 +63,7 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador após inici
 ---
 ## Bibliotecas
 
-- [React-icon](https://react-icons.github.io/react-icons/)
+- [React-icon](https://react-icons.github.io/react-icons/) 
 - [React-hook-form](https://react-hook-form.com/)
 - [moment](https://momentjs.com/)
 - [Axios](https://www.npmjs.com/package/axios)
@@ -83,13 +89,46 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador após inici
 ---
 
 ## Test Check
- [ x ] - Página de login<br>
- [ x ] - Única página disponível se não estiver logado <br>
- [ x ] - <br>
- [ x ] - <br>
- [ x ] - <br>
- [ x ] - <br>
- [ x ] - <br>
+ ## Página de login
+ [ ✅ ] - Única página disponível se não estiver logado <br>
+ [ ✅ ] - Criar um usuário básico para acesso<br>
+ - [ ⚠️ ] OBS: (Caso não consigar autenticar pelo Login/senha poderá logar com Github ou Google)<br>
+
+---
+
+ ## Uma página de lista de dragões:
+ [ ✅ ] - Os nomes devem estar em ordem alfabética; <br>
+ [ ✅ ] - A partir da lista, deverá ser possível remover e alterar as informações dos dragões. <br>
+  ### Bônus
+  [ ✅ ] - Botão para trocar a visualizaçaõ de Lista para Cards
+
+ ---
+
+ ## Uma página com os detalhes de um dragão específico:
+ [ ✅ ]  - Os seguintes dados devem ser apresentados na página: - Data de criação; - Nome; - Tipo; <br>
+
+---
+
+ ## Uma página para cadastro de dragões 
+ [ ✅ ] - Página de cadastro de dragões
+
+ 
+---
+
+ ## API
+
+
+ http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon
+
+Lista de dragões: GET .../api/v1/dragon <br>
+Detalhes de dragões: GET .../api/v1/dragon/:id<br>
+Criação de um dragão: POST .../api/v1/dragon<br>
+Edição de um dragão: PUT .../api/v1/dragon/:id<br>
+Deleção de um dragão: DELETE .../api/v1/dragon/:id<br>
+
+
+
+ 
 
 
 
