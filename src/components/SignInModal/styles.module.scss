@@ -80,6 +80,25 @@
     }
 }
 
+@media(max-width: 600px) {
+    .modalContainer {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin-left: 1rem;
+        .containerContent{
+
+            h1 {
+                text-align: center;
+            }
+            &::before {
+                display: none;
+    
+            }
+        }
+    }
+}
+
 .container{
     display: flex;
     align-items: center;

@@ -20,7 +20,7 @@ interface IFormInputs {
 const validatePost = yup.object().shape({
     name: yup.string().required("Nome do dragao e obrigatorio"),
     type: yup.string().required("O tipo do dragao e obrigatorio"),
-    avatar: yup.string()
+    avatar: yup.string().required("Coloque o link do avatar do seu dragao")
 })
 
 export default function CreateDragon() {
@@ -36,7 +36,7 @@ export default function CreateDragon() {
     return (
         session ? (
             <>
-                <Header />
+                <Header title="que tal criar o seu proprio dragao?"/>
                 <div className={styles.Modal}>
                     <h3>Crie seu dragao</h3>
                     <div className={styles.DragonForm}>
@@ -46,7 +46,7 @@ export default function CreateDragon() {
                             <input type="text" placeholder="Digite o tipo do Dragao" {...register('type')} />
                             <p className={styles.erroMsg}>{errors.type?.message}</p>
                             <input type="text" placeholder="URL do avatar do dragao http://..." {...register('avatar')} />
-                            <p className={styles.textMsg}></p>
+                            <p className={styles.erroMsg}>{errors.avatar?.message}</p>
                             <div className={styles.buttonSubmit}>
                                 <Link href="/dragons"><button>Voltar</button></Link>
                                 <input type="submit" value="Criar" />

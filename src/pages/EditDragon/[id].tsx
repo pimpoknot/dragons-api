@@ -14,7 +14,7 @@ export default function EditDragon() {
         <>
             {session ? (
                 <>
-                    <Header />
+                    <Header  />
                     <Form />
                 </>
             ) : (

@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import moment from 'moment'
 import Link from 'next/link'
 import { DRAGON_GENERIC_IMAGE, API_URL } from '../../services/variables'
+import ErrorModal from "../../components/ErrorModal";
 
 interface ProfileDragonProps {
     name: string;
@@ -19,20 +20,20 @@ export default function DragonProfile() {
     const router = useRouter()
     const { id } = router.query
     const [profileDragon, setProfileDragon] = useState<ProfileDragonProps>()
-
+    const [catchError, setCatchError] = useState(false)
 
 
     async function fetchData() {    
-        
         await axios.get(API_URL+id)
         .then((response) => {
             let user = response.data
             setProfileDragon(user)
-            console.log('Dragon Data -->', profileDragon)
-            console.log(id)
-        }).catch((err) =>{
-            window.alert('Erro ao acessar dados da API, voce sera redireciado para home')
-            router.push("/dragons")
+        })
+        .catch((err) =>{
+            setCatchError(true)
+            setTimeout(() =>{
+                router.push("/dragons")
+            },3000)
         })
         // let response = await axios.get(`${API_URL+id}`)
         // let user = await response.data
@@ -46,6 +47,8 @@ export default function DragonProfile() {
     },[])
 
     return (
+       <>
+        {catchError ? <ErrorModal /> : ''}
         <div className={styles.container}>
             <div className={styles.card} key={profileDragon?.id}>
                 <div className={styles.cardImage}>
@@ -61,9 +64,7 @@ export default function DragonProfile() {
                 </div>
             </div>
         </div>
+       </>
     )
-
-
-
 
 }

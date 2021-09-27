@@ -3,9 +3,9 @@
 ## Tecnologias usadas
 [ReactJS](https://pt-br.reactjs.org/) / 
 [NextJS](https://nextjs.org/)<br>
-[Typescript](https://www.typescriptlang.org/) - Com objetivo de tipar nossos objetos para que torne a manutenção mais simples no futuro.<br>
-[Next Router](https://nextjs.org/docs/api-reference/next/router#userouter) - Como nossa aplicação tem muitas funcionalidade de navegação, decidir usar o next/router por conta de sua flexbilidade e usabilidade simples. <br>
-[Next Auth](https://next-auth.js.org/) - Para uma funcionalidade prática de autenticação, o NextAuth nos fornece uma documentação bem estruturada
+[Typescript](https://www.typescriptlang.org/)<br>
+[Next Router](https://nextjs.org/docs/api-reference/next/router#userouter)<br>
+[Next Auth](https://next-auth.js.org/)
 
 ## Páginas de Componentes
 
@@ -39,8 +39,9 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador apóis inic
 - [React-hook-form]()
 - [moment]()
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
+- Typescript - Com objetivo de tipar nossos objetos para que torne a manutenção mais simples no futuro
+- Next Router - Como nossa aplicação tem muitas funcionalidade de navegação, decidir usar o next/router por conta de sua flexbilidade e usabilidade simples.
+- Para uma funcionalidade prática de autenticação, o NextAuth nos fornece uma documentação bem estruturada
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More

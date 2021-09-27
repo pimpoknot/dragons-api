@@ -3,9 +3,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import Link from 'next/link'
 import axios from 'axios';
-import { PropsWithChildren, ReactNode, useEffect } from 'react';
+import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
+import ErrorModal from '../ErrorModal';
 
 interface IFormInputs {
     name: string;
@@ -14,10 +15,11 @@ interface IFormInputs {
     avatar: string;
 }
 
-export default function Form(props: IFormInputs)  {
+export default function Form(props: IFormInputs) {
 
     const router = useRouter()
     const { id } = router.query
+    const [catchError, setCatchError] = useState(false)
 
     const validatePost = yup.object().shape({
         name: yup.string().required("Nome do dragao e obrigatorio"),
@@ -33,34 +35,43 @@ export default function Form(props: IFormInputs)  {
             .then((response) => {
                 reset(response.data)
             })
+            .catch((err) => {
+                setCatchError(true)
+                setTimeout(() => {
+                    router.push('/dragons')
+                }, 3000)
+            })
     }, [])
 
-    const addDragon = async function (data: IFormInputs)  {
+    const addDragon = async function (data: IFormInputs) {
         await axios.put(`http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/${id}`, data)
-        .then(()=> {
-            router.push("/dragons")
-        })
+            .then(() => {
+                router.push("/dragons")
+            })
         console.log(data)
     }
-    
+
     const { errors } = formState
 
     return (
-        <div className={styles.container}>
-            <div className={styles.ModalContainer}>
-                <h2>Edite seu dragao</h2>
-                <form onSubmit={handleSubmit(addDragon)}>
-                    <input type="text" {...register('name')} />
-                    <p>{errors.name?.message}</p>
-                    <input type="text" {...register('type')} />
-                    <p>{errors.type?.message}</p>
-                    <input type="text" placeholder="Http://urldaimagedodragao.com.br" {...register('avatar')} />
-                    <div className={styles.ButtonSubmit}>
-                        <Link href="/dragons"><button>Voltar</button></Link>
-                        <button>Editar</button>
-                    </div>
-                </form>
+        <>
+            {catchError ? <ErrorModal /> : ''}
+            <div className={styles.container}>
+                <div className={styles.ModalContainer}>
+                    <h2>Edite seu dragao</h2>
+                    <form onSubmit={handleSubmit(addDragon)}>
+                        <input type="text" {...register('name')} />
+                        <p>{errors.name?.message}</p>
+                        <input type="text" {...register('type')} />
+                        <p>{errors.type?.message}</p>
+                        <input type="text" placeholder="Http://urldaimagedodragao.com.br" {...register('avatar')} />
+                        <div className={styles.ButtonSubmit}>
+                            <Link href="/dragons"><button>Voltar</button></Link>
+                            <button>Editar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

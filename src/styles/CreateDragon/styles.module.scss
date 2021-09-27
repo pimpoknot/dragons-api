@@ -102,3 +102,10 @@
     width: 94%;
     margin: 1rem auto;
 }
+
+@media(max-width: 600px) {
+    .Modal {
+        width: 100%;
+        display: table;
+    }
+}

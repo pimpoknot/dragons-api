@@ -1,11 +1,12 @@
 .dragonContainer {
-    background: grey;
+
     padding: 1rem;
     display: flex;
     align-items: center;
     position: relative;
     border-radius: 0px 0 25px 25px;
     justify-content: center;
+    width: 100%;
     .headerTitle {
         button {
             background: #288d50;
