@@ -33,8 +33,8 @@ SignInModal: Esse Componente fica responsável pela tela inicial, dentro dele ex
  DragonsModal: Aqui fica o modal quando acessado os detalhes de cada dragão<br><br>
  Buttons: Alguns botões principais estão nesse componente<br><br>
  DeniedAccess: Componente que checa de usuario ta logado ou não, podendo liberar a lista de dragões<br><br>
-ErrorModal: Visual do Modal para tratativa caso ocorra algum erro de requisição da API.<br>
- Form  Esse componente fica responsável pela validação do formulário de edição dos dragões.<br>
+ErrorModal: Visual do Modal para tratativa caso ocorra algum erro de requisição da API.<br><br>
+ Form: Esse componente fica responsável pela validação do formulário de edição dos dragões.<br>
 
  DragonTable Aqui fica toda estrutura da lista de dragões da HOME quando está em modo tabela.<br>
 
