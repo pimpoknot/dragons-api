@@ -1,17 +1,5 @@
 
-### Desenvolvido por: 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://www.linkedin.com/in/marcos-maverick-091321101/">
-        <img src="https://media-exp1.licdn.com/dms/image/C4E03AQHGgHQzwANMqw/profile-displayphoto-shrink_800_800/0/1596469756072?e=1638403200&v=beta&t=GWjdapw-tKaS8NAoFR2ok4gfW4ewhmct16n7Ms8-Ua8" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
-        <sub>
-          <b>Marcos Maverick</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
-</table>
+### Desenvolvido por: Marcos Maverick
 
 
 ---
